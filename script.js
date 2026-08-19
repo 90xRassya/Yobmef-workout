@@ -1,31 +1,64 @@
+// =========================
+// TOMBOL HOME
+// =========================
+
 const tombol = document.getElementById("tombol");
 
-tombol.addEventListener("click", function () {
-    alert("Halo! Selamat datang di website latihanmu 🎉");
-});
-function simpanCatatan(){
-
-let isi = document.getElementById("catatan").value;
-
-localStorage.setItem("catatanSaya", isi);
-
-document.getElementById("status").innerHTML =
-"✅ Catatan berhasil disimpan";
+if (tombol) {
+    tombol.addEventListener("click", function () {
+        alert("Halo! Selamat datang di website latihanmu 🎉");
+    });
 }
 
-window.onload = function(){
 
-let data = localStorage.getItem("catatanSaya");
+// =========================
+// CATATAN
+// =========================
 
-if(data){
-document.getElementById("catatan").value = data;
+function simpanCatatan() {
+
+    let kotak = document.getElementById("catatan");
+
+    if (!kotak) return;
+
+    let isi = kotak.value;
+
+    localStorage.setItem("catatanSaya", isi);
+
+    let status = document.getElementById("status");
+
+    if (status) {
+        status.innerHTML = "✅ Catatan berhasil disimpan";
+    }
 }
 
+
+function muatCatatan() {
+
+    let kotak = document.getElementById("catatan");
+
+    if (!kotak) return;
+
+    let data = localStorage.getItem("catatanSaya");
+
+    if (data) {
+        kotak.value = data;
+    }
 }
+
+
+// =========================
+// TODO LIST
+// =========================
+
 function tambahTask() {
 
     let input = document.getElementById("task");
-    let tugas = input.value;
+    let list = document.getElementById("list");
+
+    if (!input || !list) return;
+
+    let tugas = input.value.trim();
 
     if (tugas === "") {
         alert("Tulis tugas dulu!");
@@ -44,20 +77,39 @@ function tambahTask() {
         </button>
     `;
 
-    document.getElementById("list").appendChild(li);
+    list.appendChild(li);
 
     input.value = "";
 }
 
+
 function selesaiTask(element) {
 
-    if (element.innerHTML.startsWith("☐")) {
-        element.innerHTML = element.innerHTML.replace("☐", "☑");
+    if (element.innerHTML.includes("☐")) {
+
+        element.innerHTML =
+            element.innerHTML.replace("☐", "☑");
+
     } else {
-        element.innerHTML = element.innerHTML.replace("☑", "☐");
+
+        element.innerHTML =
+            element.innerHTML.replace("☑", "☐");
     }
 }
 
+
 function hapusTask(button) {
+
     button.parentElement.remove();
 }
+
+
+// =========================
+// JALANKAN SAAT HALAMAN DIBUKA
+// =========================
+
+window.addEventListener("load", function () {
+
+    muatCatatan();
+
+});
