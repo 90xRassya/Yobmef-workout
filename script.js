@@ -140,3 +140,22 @@ window.addEventListener("load", function () {
     muatTodo();
 
 });
+
+function tampilkanJam() {
+
+    let elemenJam = document.getElementById("jam");
+
+    if (!elemenJam) return;
+
+    let sekarang = new Date();
+
+    let jam = String(sekarang.getHours()).padStart(2, "0");
+    let menit = String(sekarang.getMinutes()).padStart(2, "0");
+    let detik = String(sekarang.getSeconds()).padStart(2, "0");
+
+    elemenJam.innerHTML = jam + ":" + menit + ":" + detik;
+}
+
+setInterval(tampilkanJam, 1000);
+
+tampilkanJam();
