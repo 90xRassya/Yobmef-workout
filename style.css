@@ -97,3 +97,18 @@ li{
     padding:10px;
     border-radius:10px;
 }
+li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+li span{
+    cursor:pointer;
+}
+
+li button{
+    background:#d9534f;
+    padding:6px 10px;
+    font-size:14px;
+    }
