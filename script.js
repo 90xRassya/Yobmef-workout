@@ -45,8 +45,6 @@ function muatCatatan() {
         kotak.value = data;
     }
 }
-
-
 // =========================
 // TODO LIST
 // =========================
@@ -80,6 +78,8 @@ function tambahTask() {
     list.appendChild(li);
 
     input.value = "";
+
+    simpanTodo();
 }
 
 
@@ -95,15 +95,41 @@ function selesaiTask(element) {
         element.innerHTML =
             element.innerHTML.replace("☑", "☐");
     }
+
+    simpanTodo();
 }
 
 
 function hapusTask(button) {
 
     button.parentElement.remove();
+
+    simpanTodo();
 }
 
 
+function simpanTodo() {
+
+    let list = document.getElementById("list");
+
+    if (!list) return;
+
+    localStorage.setItem("todoSaya", list.innerHTML);
+}
+
+
+function muatTodo() {
+
+    let list = document.getElementById("list");
+
+    if (!list) return;
+
+    let data = localStorage.getItem("todoSaya");
+
+    if (data) {
+        list.innerHTML = data;
+    }
+}
 // =========================
 // JALANKAN SAAT HALAMAN DIBUKA
 // =========================
@@ -111,5 +137,6 @@ function hapusTask(button) {
 window.addEventListener("load", function () {
 
     muatCatatan();
+    muatTodo();
 
 });
