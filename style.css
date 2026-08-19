@@ -78,3 +78,22 @@ textarea{
     margin-top:15px;
     color:#4CAF50;
 }
+input{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+ul{
+    margin-top:20px;
+    list-style:none;
+}
+
+li{
+    background:#444;
+    margin:10px 0;
+    padding:10px;
+    border-radius:10px;
+}
